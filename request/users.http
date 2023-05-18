@@ -1,0 +1,17 @@
+@api = http://localhost:60879/usuarios
+
+GET {{api}}
+
+###
+POST {{api}}
+Content-Type: application/json
+
+{
+    "usuario": "Elwey", 
+    "correo": "josue@gmail.com", 
+    "password": "sxaknak12"
+
+}
+
+###
+DELETE {{api}}/El papu
