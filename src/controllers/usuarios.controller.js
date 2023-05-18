@@ -156,7 +156,7 @@ export const actualizarH = async(req, res) => {
     try{
     const pool = await getC();
     await pool.request()
-    .input("idH", id)
+    .input("idH", sql.VarChar, id)
     .input("newnameT", sql.NChar, newN)
     .input("newmateriaT", sql.NChar, newM)
     .input("newDesH", sql.VarChar, newD)
