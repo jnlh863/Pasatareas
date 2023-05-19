@@ -128,12 +128,11 @@ export const verTareas = async (req, res) => {
 
 //GUARDAR UNA TAREA 
 export const GuardarTarea = async (req, res) => {
-    const { id, nameH, materiaH, DH, url, userN } = req.body;
+    const { nameH, materiaH, DH, url, userN } = req.body;
 
     try{
         const pool = await getC();
         await pool.request()
-        .input("id", sql.Int, id)
         .input("nombreT", sql.NChar, nameH).input("materiaT", sql.NChar, materiaH)
         .input("descripT", sql.VarChar, DH)
         .input("urlT", sql.VarChar, url)
