@@ -11,7 +11,7 @@ export const NEWUser = async (req, res) => {
 
     if (usuario == null || correo == null || password == null) { 
         res.json('Llene los campos correspondientes')
-    }
+    }else{
 
     try {
         const pool = await getC();
@@ -24,6 +24,7 @@ export const NEWUser = async (req, res) => {
         res.status(500);
         res.send(error.message);
     }
+}
     
 };
 
