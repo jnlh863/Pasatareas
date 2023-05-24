@@ -93,13 +93,15 @@ export const vermiCuenta = async (req, res) => {
 
 //VER MIS TAREAS QUE YO SUBI
 export const vermisTareas = async (req, res) => {
+    const obj = { }
     const { miuserID } = req.params;
     try {
         const pool = await getC();
         const result = await pool.request()
         .input("user", sql.VarChar, miuserID)
         .query(guardarH.vermisTareas);
-        res.json(result);
+        obj.misT = result
+        res.json(obj)
     } catch (error) {
         res.status(500);
         res.send(error.message);
