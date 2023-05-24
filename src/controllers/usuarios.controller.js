@@ -93,12 +93,12 @@ export const vermiCuenta = async (req, res) => {
 
 //VER MIS TAREAS QUE YO SUBI
 export const vermisTareas = async (req, res) => {
-    const obj = { }
+    const obj = { };
     const { miuserID } = req.params;
     try {
         const pool = await getC();
         const result = await pool.request()
-        .input("user", sql.VarChar, miuserID)
+        .input("user", miuserID)
         .query(guardarH.vermisTareas);
         obj.misT = result.recordset
         res.json(obj)

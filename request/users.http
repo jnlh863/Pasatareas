@@ -1,6 +1,6 @@
-@api = http://localhost:60879/usuarios
+@api = https://pasatareasappservicepia.azurewebsites.net
 
-GET {{api}}
+GET {{api}}/Jahir08
 
 ###
 POST {{api}}
