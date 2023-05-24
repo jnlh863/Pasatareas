@@ -100,7 +100,7 @@ export const vermisTareas = async (req, res) => {
         const result = await pool.request()
         .input("user", sql.VarChar, miuserID)
         .query(guardarH.vermisTareas);
-        obj.misT = result
+        obj.misT = result.recordset
         res.json(obj)
     } catch (error) {
         res.status(500);
