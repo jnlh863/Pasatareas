@@ -31,17 +31,18 @@ export const NEWUser = async (req, res) => {
 
 
 
-//ELIMINAR UNA CUENTA (EN PROCESO)
+//ELIMINAR UNA CUENTA 
 export const deleteUser = async (req, res) => {
-    const { UserID } = req.params;
+
+    const UserID  = req.params.UserID;
+
     const pool = await getC();
-    await pool.request().input("usuario", sql.VarChar, UserID)
+    await pool.request().input("usuario", UserID)
     .query(RegistrarUser.DeleteUser);
 
-    await pool.request().input("miusuario", sql.VarChar, UserID)
+    await pool.request().input("miusuario", UserID)
     .query(RegistrarUser.DeletemisTareas);
 
-    res.send(result);
     res.json('Su cuenta se ha eliminado')
 }
 
@@ -75,11 +76,11 @@ export const ExistUser = async (req, res) => {
 
 //VER DATOS DE MI CUENTA
 export const vermiCuenta = async (req, res) => {
-    const { contraW } = req.params;
+    const passW  = req.params.passW;
     try {
         const pool = await getC();
         const result = await pool.request()
-        .input("mipassW", sql.VarChar, contraW)
+        .input("mipassW", passW)
         .query(InicioSesion.micuenta);
         res.json(result.recordset);
     } catch (error) {
@@ -89,11 +90,21 @@ export const vermiCuenta = async (req, res) => {
 }
 
 
+//VER MIS TAREAS
+export const vermisTareas = async (req, res) => {
+    const obj = { }
+    const user = req.params.user;
+    const pool = await getC();
+    const result = await pool.request().input("user", user)
+        .query(guardarH.vermisTareas);
+    obj.misT = result.recordset
+    res.json(obj);
+}
 
 
 
 
-//VER LAS PRIMERAS 15 TAREAS
+//VER LAS PRIMERAS TODAS LAS TAREAS
 export const verTareas = async (req, res) => {
     const obj = { }
     try {
@@ -135,22 +146,18 @@ export const GuardarTarea = async (req, res) => {
 
 //ACTUALIZAR UNA TAREA
 export const actualizarH = async(req, res) => {
-    const { id } = req.params;
-    const { newN, newM, newD } = req.body;
+    const id  = req.params.id;
+    const { newN, newM, newD , newUrl} = req.body;
 
-    try{
     const pool = await getC();
     await pool.request()
-    .input("idH", sql.VarChar, id)
+    .input("idH", sql.Int, id)
     .input("newnameT", sql.NChar, newN)
     .input("newmateriaT", sql.NChar, newM)
     .input("newDesH", sql.VarChar, newD)
+    .input("newURL", sql.VarChar, newUrl)
     .query(guardarH.actualizar);
     res.json('Actulizacion completada');
-    }catch(error){
-        res.status(500);
-        res.send(error.message);
-    }
 }
 
 

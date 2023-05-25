@@ -1,4 +1,4 @@
-@api = http://localhost:60879/homework
+@api = http://localhost:60879/usuarios
 
 GET {{api}}
 
@@ -14,4 +14,24 @@ Content-Type: application/json
 }
 
 ###
-GET {{api}}/dsndsk
+DELETE {{api}}/45
+
+
+###
+GET {{api}}/Jahir08
+
+
+###
+PUT {{api}}/47
+Content-Type: application/json
+
+{
+    "newN" : "HOY",
+    "newM" : "HOY",
+    "newD": "HOY",
+    "newUrl": "HOY"
+}
+
+
+###
+DELETE {{api}}/Jahir08

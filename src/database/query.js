@@ -14,7 +14,8 @@ export const guardarH = {
     
     buscar: "SELECT * FROM misTareas WHERE materiaT = @materia",
     verTareas : "SELECT * FROM misTareas",
+    vermisTareas: "SELECT * FROM misTareas WHERE userName = @user" ,
     mitarea: "INSERT INTO misTareas (nameT, materiaT, DesH, urlT, userName) values (@nombreT, @materiaT, @descripT, @urlT, @userT)",
     eliminarT: "DELETE FROM misTareas where idUsuario = @ID",
-    actualizar: "UPDATE misTareas SET nameT = @newnameT, materiaT = @newmateriaT, DesH = @newDesH where idUsuario = @idH"
+    actualizar: "UPDATE misTareas SET nameT = @newnameT, materiaT = @newmateriaT, DesH = @newDesH, urlT = @newURL where idUsuario = @idH"
 }
