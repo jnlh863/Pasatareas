@@ -14,4 +14,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{api}}/43
+GET {{api}}/dsndsk

@@ -113,15 +113,15 @@ export const verTareas = async (req, res) => {
 
 //GUARDAR UNA TAREA 
 export const GuardarTarea = async (req, res) => {
-    const { nameH, materiaH, DH, url, userN } = req.body;
+    const { nameT, materiaT, DesH, urlT, userName } = req.body;
 
     try{
         const pool = await getC();
         await pool.request()
-        .input("nombreT", sql.NChar, nameH).input("materiaT", sql.NChar, materiaH)
-        .input("descripT", sql.VarChar, DH)
-        .input("urlT", sql.VarChar, url)
-        .input("userT", sql.VarChar, userN)
+        .input("nombreT", sql.NChar, nameT).input("materiaT", sql.NChar, materiaT)
+        .input("descripT", sql.VarChar, DesH)
+        .input("urlT", sql.VarChar, urlT)
+        .input("userT", sql.VarChar, userName)
         .query(guardarH.mitarea);
         res.json('Tarea subida exitosamente');
     }catch(error){ 
@@ -157,10 +157,11 @@ export const actualizarH = async(req, res) => {
 //ELIMINAR UNA TAREA
 export const asesinarH = async (req, res) => {
 
-    const { UserID } = req.params;
+    const id = req.params.id;
+   
     const pool = await getC();
     
-    const result = await pool.request().input("ID", UserID)
+    const result = await pool.request().input("ID", id)
     .query(guardarH.eliminarT);
     res.send(result);
    
