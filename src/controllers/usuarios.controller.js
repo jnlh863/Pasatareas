@@ -118,13 +118,11 @@ export const vermisTareas = async (req, res) => {
 
 //VER LAS PRIMERAS 15 TAREAS
 export const verTareas = async (req, res) => {
-    const obj = { }
     try {
         const pool = await getC();
         const result = await pool.request()
         .query(guardarH.verTareas);
-        obj.misT = result
-        res.json(obj);
+        res.json(result);
     } catch (error) {
         res.status(500);
         res.send(error.message);
