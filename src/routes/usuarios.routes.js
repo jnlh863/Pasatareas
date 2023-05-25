@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { NEWUser, ExistUser, deleteUser, GuardarTarea, actualizarH, asesinarH, vermisTareas, buscarT, vermiCuenta, verTareas } from '../controllers/usuarios.controller'
+import { NEWUser, ExistUser, deleteUser, GuardarTarea, actualizarH, asesinarH, buscarT, vermiCuenta, verTareas } from '../controllers/usuarios.controller'
 
 const router = Router()
 
@@ -17,13 +17,12 @@ router.get('/homework/:materia', buscarT); //Buscar tareas por nombre de la mate
 
 router.get('/homework', verTareas); //Ver las primeras 15 tareas
 
-//router.get('/homework/:id', vermisTareas); //Ver las tareas que yo subi
-
 router.post('/homework/add', GuardarTarea); //Ruta para guardar tarea
 
 router.put('/homework/:id', actualizarH); //Ruta para actualizar una tarea
 
 router.delete('/homework/:id', asesinarH); //Ruta para eliminar una tarea
+
 
 
 export default router

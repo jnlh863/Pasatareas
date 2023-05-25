@@ -14,8 +14,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{api}}/El papu
-
-###
-GET {{api}}/43
-
+DELETE {{api}}/43

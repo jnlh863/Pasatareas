@@ -91,38 +91,17 @@ export const vermiCuenta = async (req, res) => {
 
 
 
-/*VER MIS TAREAS QUE YO SUBI
-export const vermisTareas = async (req, res) => {
-    const { id } = req.params;
-    /*try {
-        const pool = await getC();
-        const result = await pool.request()
-        .input("user", id)
-        .query(guardarH.vermisTareas);
-        res.send(result);
-
-        if(result.recordset.length > 0){
-            res.json(result)
-        }else{
-            res.json("No hay")
-        }
-    } catch (error) {
-        res.status(500);
-        res.send(error.message);
-    }
-}*/
-
-
-
 
 
 //VER LAS PRIMERAS 15 TAREAS
 export const verTareas = async (req, res) => {
+    const obj = { }
     try {
         const pool = await getC();
         const result = await pool.request()
         .query(guardarH.verTareas);
-        res.json(result);
+        obj.misT = result.recordset
+        res.json(obj);
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -175,16 +154,17 @@ export const actualizarH = async(req, res) => {
 }
 
 
-
-
 //ELIMINAR UNA TAREA
 export const asesinarH = async (req, res) => {
+
     const { UserID } = req.params;
     const pool = await getC();
-    await pool.request().input("miusuario", sql.Int, UserID)
+    
+    const result = await pool.request().input("ID", UserID)
     .query(guardarH.eliminarT);
-    res.json('Tarea eliminada')
-}
+    res.send(result);
+   
+};
 
 
 
