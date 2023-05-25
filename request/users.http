@@ -1,6 +1,6 @@
-@api = https://pasatareasappservicepia.azurewebsites.net
+@api = http://localhost:60879/homework
 
-GET {{api}}/Jahir08
+GET {{api}}
 
 ###
 POST {{api}}
@@ -15,3 +15,7 @@ Content-Type: application/json
 
 ###
 DELETE {{api}}/El papu
+
+###
+GET {{api}}/43
+

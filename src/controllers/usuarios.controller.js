@@ -91,22 +91,26 @@ export const vermiCuenta = async (req, res) => {
 
 
 
-//VER MIS TAREAS QUE YO SUBI
+/*VER MIS TAREAS QUE YO SUBI
 export const vermisTareas = async (req, res) => {
-    const obj = { };
-    const { miuserID } = req.params;
-    try {
+    const { id } = req.params;
+    /*try {
         const pool = await getC();
         const result = await pool.request()
-        .input("user", miuserID)
+        .input("user", id)
         .query(guardarH.vermisTareas);
-        obj.misT = result
-        res.json(obj)
+        res.send(result);
+
+        if(result.recordset.length > 0){
+            res.json(result)
+        }else{
+            res.json("No hay")
+        }
     } catch (error) {
         res.status(500);
         res.send(error.message);
     }
-}
+}*/
 
 
 
@@ -114,11 +118,13 @@ export const vermisTareas = async (req, res) => {
 
 //VER LAS PRIMERAS 15 TAREAS
 export const verTareas = async (req, res) => {
+    const obj = { }
     try {
         const pool = await getC();
         const result = await pool.request()
         .query(guardarH.verTareas);
-        res.json(result.recordset);
+        obj.misT = result
+        res.json(obj);
     } catch (error) {
         res.status(500);
         res.send(error.message);
