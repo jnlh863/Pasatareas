@@ -2,6 +2,46 @@ import { getC, sql } from "../database/conection";
 import { RegistrarUser, InicioSesion, guardarH } from "../database/query";
 
 
+//VER DATOS DE MI CUENTA
+export const vermiCuenta = async (req, res) => {
+    const passW  = req.params.passW;
+    try {
+        const pool = await getC();
+        const result = await pool.request()
+        .input("mipassW", passW)
+        .query(InicioSesion.micuenta);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
+
+
+//INICIAR SESION
+export const ExistUser = async (req, res) => {
+    const { user, email, passW } = req.body;
+
+    try{
+        const pool = await getC();
+        const result = await pool.request().input("usuario", sql.VarChar, user).
+        input("correo", sql.VarChar, email).input("passW", sql.VarChar, passW)
+        .query(InicioSesion.existeUser);
+
+        if(result.recordset.length > 0){
+            res.json('SI')
+        }else{
+            res.json('El usuarios no existe, ingrese correctamente su datos')
+        }
+    }catch(error){ 
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
 
 
 //REGISTRAR NUEVOS USUARIOS
@@ -46,48 +86,9 @@ export const deleteUser = async (req, res) => {
     res.json('Su cuenta se ha eliminado')
 }
 
+////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-//INICIAR SESION
-export const ExistUser = async (req, res) => {
-    const { user, email, passW } = req.body;
-
-    try{
-        const pool = await getC();
-        const result = await pool.request().input("usuario", sql.VarChar, user).
-        input("correo", sql.VarChar, email).input("passW", sql.VarChar, passW)
-        .query(InicioSesion.existeUser);
-
-        if(result.recordset.length > 0){
-            res.json('SI')
-        }else{
-            res.json('El usuarios no existe, ingrese correctamente su datos')
-        }
-    }catch(error){ 
-        res.status(500);
-        res.send(error.message);
-    }
-}
-
-
-
-
-
-//VER DATOS DE MI CUENTA
-export const vermiCuenta = async (req, res) => {
-    const passW  = req.params.passW;
-    try {
-        const pool = await getC();
-        const result = await pool.request()
-        .input("mipassW", passW)
-        .query(InicioSesion.micuenta);
-        res.json(result.recordset);
-    } catch (error) {
-        res.status(500);
-        res.send(error.message);
-    }
-}
 
 
 //VER MIS TAREAS
@@ -161,6 +162,8 @@ export const actualizarH = async(req, res) => {
 }
 
 
+
+
 //ELIMINAR UNA TAREA
 export const asesinarH = async (req, res) => {
 
@@ -176,30 +179,23 @@ export const asesinarH = async (req, res) => {
 
 
 
+
 //BUSCAR TAREAS POR NOMBRE DE LA MATERIA
 export const buscarT = async (req, res) => {
-    const { materia } = req.params;
+    
+    const obj = { }
+    const materia  = req.params.materia;
+    
     try {
         const pool = await getC();
         const result = await pool.request()
-        .input("materia", sql.NChar, materia)
+        .input("materia", materia)
         .query(guardarH.buscar);
-        res.json(result.recordset);
+        obj.misT = result.recordset
+        res.json(obj);
     } catch (error) {
         res.status(500);
         res.send(error.message);
     }
 
 }
-
-
-/*export const getUser = async (req, res) => {
-    try {
-        const pool = await getC();
-        const result = await pool.request().query(queries.getAllUsers);
-        res.json(result.recordset);
-    } catch (error) {
-        res.status(500);
-        res.send(error.message);
-    }
-};*/

@@ -3,7 +3,7 @@
 GET {{api}}
 
 ###
-POST {{api}}
+POST {{api}}/add
 Content-Type: application/json
 
 {
@@ -14,24 +14,19 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{api}}/45
+DELETE {{api}}/Elwey
+
+###
+GET {{api}}/cuickcc6
 
 
 ###
-GET {{api}}/Jahir08
-
-
-###
-PUT {{api}}/47
+POST {{api}}/verificacion
 Content-Type: application/json
 
 {
-    "newN" : "HOY",
-    "newM" : "HOY",
-    "newD": "HOY",
-    "newUrl": "HOY"
+    "user": "Elwey", 
+    "email": "josue@gmail.com", 
+    "passW": "sxaknak12"
+
 }
-
-
-###
-DELETE {{api}}/Jahir08

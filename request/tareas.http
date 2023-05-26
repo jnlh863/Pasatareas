@@ -1,0 +1,37 @@
+@api = http://localhost:60879/homework
+
+
+POST {{api}}/add
+Content-Type: application/json
+
+{
+   "nameT" : "hola",
+    "materiaT" : "NOSE",
+    "DesH" : "NOSE", 
+    "urlT" :"nose",
+    "userName" : "Jahir08"
+}
+
+###
+
+GET {{api}}/Jahir08
+
+###
+GET {{api}}
+
+###
+PUT {{api}}/update/52
+Content-Type: application/json
+
+{
+   "newN" : "holanigga",
+    "newM" : "juajijo",
+    "newD" : "juanjijo", 
+    "newUrl" :"nosenigga"
+}
+
+###
+DELETE {{api}}/delete/52
+
+###
+GET {{api}}/ver/NOSE

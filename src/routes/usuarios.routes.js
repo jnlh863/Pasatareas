@@ -15,16 +15,15 @@ router.delete('/usuarios/:UserID', deleteUser); //Ruta para eliminar cuenta
 
 router.get('/homework/:user', vermisTareas); //Ver mis Tareas
 
-router.get('/homework/:materia', buscarT); //Buscar tareas por nombre de la materia
-
-router.get('/homework', verTareas); //Ver las primeras TODAS las tareas
+router.get('/homework', verTareas); //Ver TODAS las tareas
 
 router.post('/homework/add', GuardarTarea); //Ruta para guardar tarea
 
-router.put('/homework/:id', actualizarH); //Ruta para actualizar una tarea
+router.put('/homework/update/:id', actualizarH); //Ruta para actualizar una tarea
 
-router.delete('/homework/:id', asesinarH); //Ruta para eliminar una tarea
+router.delete('/homework/delete/:id', asesinarH); //Ruta para eliminar una tarea
 
+router.get('/homework/ver/:materia', buscarT); //Buscar tareas por nombre de la materia
 
 
 export default router 
