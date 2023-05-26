@@ -76,6 +76,7 @@ export const deleteUser = async (req, res) => {
 
     const UserID  = req.params.UserID;
 
+    try{
     const pool = await getC();
     await pool.request().input("usuario", UserID)
     .query(RegistrarUser.DeleteUser);
@@ -84,6 +85,10 @@ export const deleteUser = async (req, res) => {
     .query(RegistrarUser.DeletemisTareas);
 
     res.json('Su cuenta se ha eliminado')
+    }catch(error){
+        res.status(500);
+        res.send(error.message);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -95,11 +100,17 @@ export const deleteUser = async (req, res) => {
 export const vermisTareas = async (req, res) => {
     const obj = { }
     const user = req.params.user;
+
+    try{
     const pool = await getC();
     const result = await pool.request().input("user", user)
         .query(guardarH.vermisTareas);
     obj.misT = result.recordset
     res.json(obj);
+    }catch(error){
+        res.status(500);
+        res.send(error.message);
+    }
 }
 
 
@@ -150,6 +161,7 @@ export const actualizarH = async(req, res) => {
     const id  = req.params.id;
     const { newN, newM, newD , newUrl} = req.body;
 
+    try{
     const pool = await getC();
     await pool.request()
     .input("idH", sql.Int, id)
@@ -159,6 +171,10 @@ export const actualizarH = async(req, res) => {
     .input("newURL", sql.VarChar, newUrl)
     .query(guardarH.actualizar);
     res.json('Actulizacion completada');
+    }catch(error){
+        res.status(500);
+        res.send(error.message);
+    }
 }
 
 
@@ -168,13 +184,15 @@ export const actualizarH = async(req, res) => {
 export const asesinarH = async (req, res) => {
 
     const id = req.params.id;
-   
-    const pool = await getC();
-    
-    const result = await pool.request().input("ID", id)
-    .query(guardarH.eliminarT);
-    res.send(result);
-   
+    try{
+        const pool = await getC();
+        await pool.request().input("ID", id)
+        .query(guardarH.eliminarT);
+        res.json("Tarea eliminada");
+    }catch(error){
+        res.status(500);
+        res.send(error.message);
+    }
 };
 
 
