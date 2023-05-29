@@ -7,7 +7,7 @@ POST {{api}}/add
 Content-Type: application/json
 
 {
-    "usuario": "Elwey", 
+    "usuario": "Elwey56", 
     "correo": "josue@gmail.com", 
     "password": "sxaknak12"
 
@@ -33,4 +33,10 @@ Content-Type: application/json
 
 
 ###
-PUT {{api}}/aldo@gmail.com/HOLA
+PUT {{api}}/foto
+Content-Type: application/json
+
+{
+    "correo": "aldo@gmail.com",
+    "urlimg": "AQUI"
+}

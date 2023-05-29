@@ -25,16 +25,22 @@ export const vermiCuenta = async (req, res) => {
 
 //COLOCAR UNA FOTO DE PERFIL
 export const miFotoPerfil = async(req, res) => {
-    const correo  = req.params.correo;
-    const urlImg = req.params.urlImg;
+
+    const { correo, urlimg } = req.body;
+
+    if(correo == null || urlimg == null){
+        res.json("Algo salio mal, vuelva a intentarlo")
+    }
     
-    try{
+    try{   
+
     const pool = await getC();
     await pool.request()
     .input("correo", sql.VarChar, correo)
-    .input("miFoto", sql.VarChar, urlImg)
+    .input("miFoto", sql.VarChar, urlimg)
     .query(InicioSesion.actualizarFoto);
     res.json('Actualizacion completada');
+
     }catch(error){
         res.status(500);
         res.send(error.message);
@@ -49,11 +55,11 @@ export const ExistUser = async (req, res) => {
     const { user, email, passW } = req.body;
 
     if(user == null || email == null){
-        return res.json('Llene todos los campos')
+        res.json('Llene todos los campos')
     }
 
     if(passW == null){
-       return  res.json('Contraseña Obligatoria')
+       res.json('Contraseña Obligatoria')
     }
 
     try{
@@ -82,11 +88,11 @@ export const NEWUser = async (req, res) => {
     const { usuario, correo, password } = req.body
 
     if(usuario == null || correo == null){
-        return res.json('Llene todos los campos')
+        res.json('Llene todos los campos')
     }
 
     if(password == null){
-       return  res.json('Contraseña Obligatoria')
+       res.json('Contraseña Obligatoria')
     }
    
     try {
@@ -173,7 +179,7 @@ export const GuardarTarea = async (req, res) => {
     const { nameT, materiaT, DesH, urlT, userName } = req.body;
 
     if(nameT == null || materiaT == null || DesH == null || urlT == null || userName == null){
-        return res.json('Llene todos los campos')
+        res.json('Llene todos los campos')
     }
 
     try{
@@ -200,7 +206,7 @@ export const actualizarH = async(req, res) => {
     const { newN, newM, newD , newUrl} = req.body;
 
     if(newN == null || newM == null || newD == null || newUrl == null){
-        return res.json('Llene todos los campos')
+        res.json('Llene todos los campos')
     }
 
 
