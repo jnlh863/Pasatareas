@@ -2,8 +2,8 @@ import {Router} from 'express'
 import { NEWUser, ExistUser, deleteUser, GuardarTarea, vermisTareas, actualizarH, asesinarH, buscarT, vermiCuenta, verTareas, miFotoPerfil } from '../controllers/usuarios.controller'
 
 const router = Router()
-
-router.get('/usuarios/:passW', vermiCuenta); //Ruta para ver datos de mi cuenta
+ 
+router.get('/usuarios/:user', vermiCuenta); //Ruta para ver datos de mi cuenta
 
 router.post('/usuarios/verificacion', ExistUser); //Ruta para el inicio de sesion
 

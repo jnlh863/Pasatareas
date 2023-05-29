@@ -5,12 +5,12 @@ import { RegistrarUser, InicioSesion, guardarH } from "../database/query";
 //VER DATOS DE MI CUENTA
 export const vermiCuenta = async (req, res) => {
     const obj = { }
-    const passW  = req.params.passW;
+    const user  = req.params.user;
 
     try {
         const pool = await getC();
         const result = await pool.request()
-        .input("mipassW", passW)
+        .input("miuser", user)
         .query(InicioSesion.micuenta);
         obj.misT = result.recordset
     res.json(obj);
@@ -103,6 +103,7 @@ export const NEWUser = async (req, res) => {
             .query(RegistrarUser.InsertUser);
         res.json('Registro exitoso');
     }catch(error){
+        res.json('Ya existe una cuenta con estos datos')
         res.status(500);
         res.send(error.message);
     }  
