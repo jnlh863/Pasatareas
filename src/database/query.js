@@ -7,7 +7,7 @@ export const RegistrarUser = {
 
 export const InicioSesion = {
     existeUser: "SELECT * FROM Usuarios where usuario = @usuario and correo = @correo and contrasena = @passW",
-    micuenta: "SELECT usuario, correo FROM Usuarios where contrasena = @mipassW",
+    micuenta: "SELECT usuario, correo, Foto_Perfil FROM Usuarios where contrasena = @mipassW",
     actualizarFoto: "UPDATE Usuarios SET Foto_Perfil = @miFoto WHERE correo = @correo"
 }
 

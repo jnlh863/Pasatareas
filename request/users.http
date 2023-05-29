@@ -17,7 +17,7 @@ Content-Type: application/json
 DELETE {{api}}/Elwey
 
 ###
-GET {{api}}
+GET {{api}}/123456
 
 
 ###
