@@ -4,14 +4,38 @@ import { RegistrarUser, InicioSesion, guardarH } from "../database/query";
 
 //VER DATOS DE MI CUENTA
 export const vermiCuenta = async (req, res) => {
+    const obj = { }
     const passW  = req.params.passW;
+
     try {
         const pool = await getC();
         const result = await pool.request()
         .input("mipassW", passW)
         .query(InicioSesion.micuenta);
-        res.json(result.recordset);
+        obj.misT = result.recordset
+    res.json(obj);
     } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
+
+
+//COLOCAR UNA FOTO DE PERFIL
+export const miFotoPerfil = async(req, res) => {
+    const correo  = req.params.correo;
+    const urlImg = req.params.urlImg;
+    
+    try{
+    const pool = await getC();
+    await pool.request()
+    .input("correo", sql.VarChar, correo)
+    .input("miFoto", sql.VarChar, urlImg)
+    .query(InicioSesion.actualizarFoto);
+    res.json('Actualizacion completada');
+    }catch(error){
         res.status(500);
         res.send(error.message);
     }
@@ -24,6 +48,14 @@ export const vermiCuenta = async (req, res) => {
 export const ExistUser = async (req, res) => {
     const { user, email, passW } = req.body;
 
+    if(user == null || email == null){
+        return res.json('Llene todos los campos')
+    }
+
+    if(passW == null){
+       return  res.json('Contraseña Obligatoria')
+    }
+
     try{
         const pool = await getC();
         const result = await pool.request().input("usuario", sql.VarChar, user).
@@ -33,7 +65,7 @@ export const ExistUser = async (req, res) => {
         if(result.recordset.length > 0){
             res.json('SI')
         }else{
-            res.json('El usuarios no existe, ingrese correctamente su datos')
+            res.json('El usuarios no existe, ingrese correctamente sus datos')
         }
     }catch(error){ 
         res.status(500);
@@ -49,10 +81,14 @@ export const NEWUser = async (req, res) => {
 
     const { usuario, correo, password } = req.body
 
-    if (usuario == null || correo == null || password == null) { 
-        res.json('Llene los campos correspondientes')
-    }else{
+    if(usuario == null || correo == null){
+        return res.json('Llene todos los campos')
+    }
 
+    if(password == null){
+       return  res.json('Contraseña Obligatoria')
+    }
+   
     try {
         const pool = await getC();
         await pool.request().input("usuario", sql.VarChar, usuario)
@@ -63,9 +99,7 @@ export const NEWUser = async (req, res) => {
     }catch(error){
         res.status(500);
         res.send(error.message);
-    }
-}
-    
+    }  
 };
 
 
@@ -116,7 +150,7 @@ export const vermisTareas = async (req, res) => {
 
 
 
-//VER LAS PRIMERAS TODAS LAS TAREAS
+//VER TODAS LAS TAREAS
 export const verTareas = async (req, res) => {
     const obj = { }
     try {
@@ -137,6 +171,10 @@ export const verTareas = async (req, res) => {
 //GUARDAR UNA TAREA 
 export const GuardarTarea = async (req, res) => {
     const { nameT, materiaT, DesH, urlT, userName } = req.body;
+
+    if(nameT == null || materiaT == null || DesH == null || urlT == null || userName == null){
+        return res.json('Llene todos los campos')
+    }
 
     try{
         const pool = await getC();
@@ -161,6 +199,11 @@ export const actualizarH = async(req, res) => {
     const id  = req.params.id;
     const { newN, newM, newD , newUrl} = req.body;
 
+    if(newN == null || newM == null || newD == null || newUrl == null){
+        return res.json('Llene todos los campos')
+    }
+
+
     try{
     const pool = await getC();
     await pool.request()
@@ -170,7 +213,7 @@ export const actualizarH = async(req, res) => {
     .input("newDesH", sql.VarChar, newD)
     .input("newURL", sql.VarChar, newUrl)
     .query(guardarH.actualizar);
-    res.json('Actulizacion completada');
+    res.json('Actualizacion completada');
     }catch(error){
         res.status(500);
         res.send(error.message);

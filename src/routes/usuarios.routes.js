@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { NEWUser, ExistUser, deleteUser, GuardarTarea, vermisTareas, actualizarH, asesinarH, buscarT, vermiCuenta, verTareas } from '../controllers/usuarios.controller'
+import { NEWUser, ExistUser, deleteUser, GuardarTarea, vermisTareas, actualizarH, asesinarH, buscarT, vermiCuenta, verTareas, miFotoPerfil } from '../controllers/usuarios.controller'
 
 const router = Router()
 
@@ -11,6 +11,7 @@ router.post('/usuarios/add', NEWUser); //Ruta para registar usuario
 
 router.delete('/usuarios/:UserID', deleteUser); //Ruta para eliminar cuenta
 
+router.put('/usuarios/:correo/:urlImg', miFotoPerfil) //Ruta para agregar o actualizar una foto de perfil
    
 
 router.get('/homework/:user', vermisTareas); //Ver mis Tareas

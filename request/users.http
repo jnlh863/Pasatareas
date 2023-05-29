@@ -17,7 +17,7 @@ Content-Type: application/json
 DELETE {{api}}/Elwey
 
 ###
-GET {{api}}/cuickcc6
+GET {{api}}
 
 
 ###
@@ -25,8 +25,12 @@ POST {{api}}/verificacion
 Content-Type: application/json
 
 {
-    "user": "Elwey", 
-    "email": "josue@gmail.com", 
-    "passW": "sxaknak12"
-
+    "user": "Facundo", 
+    "email": "facundo@gmail.com",
+    "passW": "123456"
 }
+
+
+
+###
+PUT {{api}}/aldo@gmail.com/HOLA
