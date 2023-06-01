@@ -35,7 +35,7 @@ class MisDatosAd(
         holder.nombre_U.text = "Nombre de Usuario:   \n"+ datos.usuario
         holder.correo_U.text = "Correo Electronico:  \n" + datos.correo
 
-        Glide.with(context).load(datos.FP).into(holder.Fp)
+        Glide.with(context).load(datos.FP).override(1400,500).into(holder.Fp)
 
         holder.btnUpd.setOnClickListener {
             onClick?.FP()

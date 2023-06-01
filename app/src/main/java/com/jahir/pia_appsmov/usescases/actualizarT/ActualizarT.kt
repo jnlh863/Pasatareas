@@ -73,6 +73,7 @@ class ActualizarT : AppCompatActivity() {
                     Menu::class.java
                 )
             )
+            finish()
         })
 
         ElegirTNew = findViewById(R.id.ElegirTareaNew)
@@ -98,6 +99,16 @@ class ActualizarT : AppCompatActivity() {
                 )
             }
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(
+            Intent(
+                this@ActualizarT,
+                Menu::class.java
+            )
+        )
     }
 
     private fun openFile() {

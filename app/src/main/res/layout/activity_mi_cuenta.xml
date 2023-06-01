@@ -21,28 +21,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.516" />
 
+
     <Button
         android:id="@+id/BtnCS"
-        android:layout_width="206dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="80dp"
-        android:text="Eliminar Cuenta"
+        android:layout_width="358dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/boton_redondo"
+        android:text="Eliminar Cuenta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
-        android:layout_width="373dp"
-        android:layout_height="469dp"
+        android:layout_width="365dp"
+        android:layout_height="481dp"
         android:layout_marginTop="40dp"
         app:layout_constraintBottom_toTopOf="@+id/BtnCS"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555"
         tools:ignore="MissingConstraints">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -50,6 +52,8 @@
             android:layout_width="369dp"
             android:layout_height="449dp"
             android:layout_marginBottom="48dp"
+            android:background="#03A9F4"
+            android:backgroundTint="#03A9F4"
             app:layout_constraintBottom_toTopOf="@+id/BtnCS"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.589"

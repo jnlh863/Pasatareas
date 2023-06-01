@@ -38,6 +38,7 @@ class Buscar : Fragment(), TBusqueda.OnItemClicked {
             mParam1 = requireArguments().getString(ARG_PARAM1)
             mParam2 = requireArguments().getString(ARG_PARAM2)
         }
+
     }
 
     @SuppressLint("MissingInflatedId")

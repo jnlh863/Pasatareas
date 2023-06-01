@@ -28,9 +28,9 @@ class TGAdapter(
     override fun onBindViewHolder(holder: TGViewHolder, position: Int) {
         val tarea = TG.get(position)
 
-        holder.tvIdUsuario.text = tarea.userName
-        holder.tvNombre.text = tarea.nameT
-        holder.tvMateria.text = tarea.materiaT
+        holder.tvIdUsuario.text = "Subido por: " + tarea.userName
+        holder.tvNombre.text = "Nombre de la tarea: " + tarea.nameT
+        holder.tvMateria.text = "Materia: "+ tarea.materiaT
 
         holder.btnVerPDF.setOnClickListener {
             onClick?.verPDF(tarea.urlT)

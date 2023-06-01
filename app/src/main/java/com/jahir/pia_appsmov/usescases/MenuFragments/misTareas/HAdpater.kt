@@ -28,9 +28,9 @@ class HAdpater(
         val miUser = User.toString()
 
         if (miUser.equals(tarea.userName)){
-            holder.tvIdUsuario.text = tarea.userName
-            holder.tvNombre.text = tarea.nameT
-            holder.tvMateria.text = tarea.materiaT
+            holder.tvIdUsuario.text = "Subido por:  "+ tarea.userName
+            holder.tvNombre.text = "Nombre de la tarea:  "+ tarea.nameT
+            holder.tvMateria.text = "Materia: "+ tarea.materiaT
         }
 
         holder.btnEditar.setOnClickListener {

@@ -55,10 +55,13 @@ class InicioSesion : AppCompatActivity() {
             startActivity(
                 Intent(
                     this@InicioSesion,
-                    Registrarse::class.java
+                    MainActivity::class.java
                 )
             )
+            finish()
         })
+
+
 
         ISBtn.setOnClickListener(View.OnClickListener {
             val correo = Correo.getText().toString().trim { it <= ' ' }
@@ -88,6 +91,16 @@ class InicioSesion : AppCompatActivity() {
                 )
             )
         })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(
+            Intent(
+                this@InicioSesion,
+                MainActivity::class.java
+            )
+        )
     }
 
     private fun InicioSesionFirebase(user: String, correo: String, password: String) {

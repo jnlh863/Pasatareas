@@ -1,5 +1,6 @@
 package com.jahir.pia_appsmov.usescases.user
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -79,6 +80,7 @@ class MiCuenta : AppCompatActivity(), MisDatosAd.OnItemClicked {
                     Menu::class.java
                 )
             )
+            finish()
         })
 
         Refresh.setOnRefreshListener {
@@ -89,15 +91,36 @@ class MiCuenta : AppCompatActivity(), MisDatosAd.OnItemClicked {
         }
 
         BtnCS.setOnClickListener(View.OnClickListener {
-
-                progressDialog= ProgressDialog(this@MiCuenta)
-                progressDialog!!.show()
-                progressDialog!!.setContentView(R.layout.pantalla_de_carga)
-                progressDialog!!.window!!.setBackgroundDrawableResource(
-                    android.R.color.transparent
-                )
-                Eliminar(us)
+            AlertDialog.Builder(this@MiCuenta)
+                .setMessage("Acepto eliminar mi cuenta, y todo lo asociado a ella")
+                .setCancelable(false)
+                .setPositiveButton("Si") { dialog, whichButton ->
+                    progressDialog= ProgressDialog(this@MiCuenta)
+                    progressDialog!!.show()
+                    progressDialog!!.setContentView(R.layout.pantalla_de_carga)
+                    progressDialog!!.window!!.setBackgroundDrawableResource(
+                        android.R.color.transparent
+                    )
+                    Thread.sleep(2000)
+                    finish()
+                    Eliminar(us)
+                }
+                .setNegativeButton("No") { dialog, whichButton ->
+                }
+                .show()
         })
+    }
+
+
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(
+            Intent(
+                this@MiCuenta,
+                Menu::class.java
+            )
+        )
     }
 
     fun obtener_misDatos(us: String?) {

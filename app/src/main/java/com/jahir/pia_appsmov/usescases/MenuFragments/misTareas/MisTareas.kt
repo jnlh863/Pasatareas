@@ -1,5 +1,6 @@
 package com.jahir.pia_appsmov.usescases.MenuFragments.misTareas
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +21,7 @@ import com.jahir.pia_appsmov.R
 import com.jahir.pia_appsmov.usescases.VerInfoTarea.VerInfoT
 import com.jahir.pia_appsmov.usescases.actualizarT.ActualizarT
 import com.jahir.pia_appsmov.usescases.compartirTarea.Tarea
+import com.jahir.pia_appsmov.usescases.menu.Menu
 import com.jahir.pia_appsmov.usescases.registro.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -53,7 +56,11 @@ class MisTareas : Fragment(), HAdpater.OnItemClicked {
             mParam1 = requireArguments().getString(ARG_PARAM1)
             mParam2 = requireArguments().getString(ARG_PARAM2)
         }
+
     }
+
+
+
 
     lateinit private var Add: FloatingActionButton
     override fun onCreateView(
@@ -66,8 +73,8 @@ class MisTareas : Fragment(), HAdpater.OnItemClicked {
         Add = root.findViewById(R.id.Add)
         preferences = this.requireActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE)
         val User = preferences.getString("user", null)
-        MisTareas = root.findViewById(R.id.misTareas)
 
+        MisTareas = root.findViewById(R.id.misTareas)
         MisTareas.layoutManager = LinearLayoutManager(activity)
         setupRecyclerView(User)
         vermisTareas(User)
@@ -82,7 +89,7 @@ class MisTareas : Fragment(), HAdpater.OnItemClicked {
     fun vermisTareas(user: String?){
         try{
             if(siempreT){
-        CoroutineScope(Dispatchers.IO).launch {
+            CoroutineScope(Dispatchers.IO).launch {
             val call = RetrofitClient.webService.misTareas(user.toString())
             activity?.runOnUiThread {
                 if (call.isSuccessful) {
@@ -130,6 +137,9 @@ class MisTareas : Fragment(), HAdpater.OnItemClicked {
         }
     }
 
+
+
+
     override fun editarTarea(tarea: Tarea) {
         val intent = Intent(context, ActualizarT::class.java)
         intent.putExtra("idTarea", tarea.idUsuario)
@@ -140,6 +150,11 @@ class MisTareas : Fragment(), HAdpater.OnItemClicked {
     }
 
     override fun borrarTarea(idUsuario: Int, miUser: String?) {
+        AlertDialog.Builder(activity)
+            .setMessage("¿Desea eliminar esta tarea?")
+            .setCancelable(false)
+            .setPositiveButton("Si") { dialog, whichButton ->
+
         CoroutineScope(Dispatchers.IO).launch {
                 val call = RetrofitClient.webService.eliminartarea(idUsuario)
                 activity?.runOnUiThread{
@@ -157,6 +172,10 @@ class MisTareas : Fragment(), HAdpater.OnItemClicked {
         progressDialog!!.setContentView(R.layout.pantalla_de_carga)
         progressDialog!!.window!!.setBackgroundDrawableResource(
             android.R.color.transparent)
+            }
+    .setNegativeButton("No") { dialog, whichButton ->
+    }
+    .show()
     }
 
     override fun verPDF(urlT: String) {

@@ -18,17 +18,17 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/black"
             app:counterEnabled="true"
             app:counterMaxLength="20"
             app:counterTextColor="@color/white"
             app:helperText="*Obligatorio"
-            app:helperTextTextColor="@color/white"
-            android:background="@color/black">
+            app:helperTextTextColor="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nombreNew"
@@ -46,12 +46,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/black"
             app:counterEnabled="true"
             app:counterMaxLength="20"
             app:counterTextColor="@color/white"
             app:helperText="*Obligatorio"
-            app:helperTextTextColor="@color/white"
-            android:background="@color/black">
+            app:helperTextTextColor="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/materiaNew"
@@ -69,13 +69,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/black"
             android:hint="Descripción de la tarea"
             app:counterEnabled="true"
             app:counterMaxLength="250"
             app:counterTextColor="@color/white"
             app:helperText="*Obligatorio"
-            app:helperTextTextColor="@color/white"
-            android:background="@color/black">
+            app:helperTextTextColor="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/desNew"
@@ -94,8 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/boton_redondo"
-            android:text="Actualizar archivo"
-            />
+            android:text="Actualizar archivo" />
 
         <Space
             android:layout_width="match_parent"
@@ -112,24 +111,24 @@
 
     <Button
         android:id="@+id/Regresar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/boton_redondo"
         android:text="Regresar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="229dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/logo"
+        android:layout_width="191dp"
+        android:layout_height="153dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/logoapk"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></ImageView>
 

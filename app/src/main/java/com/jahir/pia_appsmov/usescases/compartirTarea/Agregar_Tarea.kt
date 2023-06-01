@@ -64,6 +64,7 @@ class Agregar_Tarea : AppCompatActivity() {
                     Menu::class.java
                 )
             )
+            finish()
         })
 
         ElegirT = findViewById(R.id.ElegirTarea)
@@ -91,6 +92,17 @@ class Agregar_Tarea : AppCompatActivity() {
             }
         })
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(
+            Intent(
+                this@Agregar_Tarea,
+                Menu::class.java
+            )
+        )
+    }
+
 
     private fun openFile() {
         val i = Intent()

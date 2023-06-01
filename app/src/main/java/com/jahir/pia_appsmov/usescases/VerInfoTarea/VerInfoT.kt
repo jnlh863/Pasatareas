@@ -48,7 +48,18 @@ class VerInfoT : AppCompatActivity() {
                     Menu::class.java
                 )
             )
+            finish()
         })
-
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(
+            Intent(
+                this@VerInfoT,
+                Menu::class.java
+            )
+        )
+    }
+
 }

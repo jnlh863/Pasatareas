@@ -33,12 +33,12 @@ interface WebService {
         @Path ("user") user : String
     ): Response<Capturar_Datos>
 
-    @POST("/usuarios/verificacion") //Iniciar sesion (ESTE SI FUCIONA) (falta pulir cosas) <------- 5.-
+    @POST("/usuarios/verificacion") //Iniciar sesion
     suspend fun INUser(
         @Body consulta: NomU
     ): Response<String>
 
-    @POST("/usuarios/add") //Registrar Usuario (ESTE SI FUNCIONA) (falta pulir cosas) <------- 6.-
+    @POST("/usuarios/add") //Registrar Usuario
     suspend fun registrarUser(
         @Body user: Usuario
     ): Response<String>
@@ -73,7 +73,7 @@ interface WebService {
     ): Response<dt_MisTareas>
 
 
-    @POST("/homework/add") //Guardar Tarea  (ESTE FUNCIONA) (Pulir cosas menores)<--------------------------1.-
+    @POST("/homework/add") //Guardar Tarea
     suspend fun guardarTarea (
         @Body homework: Tarea
     ): Response<String>

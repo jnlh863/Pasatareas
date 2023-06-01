@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.util.PatternsCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,6 +17,7 @@ import com.jahir.pia_appsmov.usescases.pantallaprincipal.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.regex.Pattern
 
 class Registrarse : AppCompatActivity() {
 
@@ -58,6 +60,7 @@ class Registrarse : AppCompatActivity() {
                     MainActivity::class.java
                 )
             )
+            finish()
         })
 
         BtnInS.setOnClickListener(View.OnClickListener {
@@ -73,12 +76,13 @@ class Registrarse : AppCompatActivity() {
             val Contrasena = PassN.getText().toString().trim { it <= ' ' }
             val UserA = NU.getText().toString().trim { it <= ' ' }
 
-            if (Correo.isEmpty() && Contrasena.isEmpty() && UserA.isEmpty()) {
+
+            if (Correo.isEmpty() && Contrasena.isEmpty() && UserA.isEmpty()){
                 Toast.makeText(
                     this@Registrarse,
                     "Complete los campos correspondientes",
                     Toast.LENGTH_SHORT
-                ).show()
+                ).show();
             } else {
                 agregarUsuario(Correo, Contrasena, UserA)
                 progressDialog = ProgressDialog(this@Registrarse)
@@ -90,6 +94,17 @@ class Registrarse : AppCompatActivity() {
             }
         })
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(
+            Intent(
+                this@Registrarse,
+                MainActivity::class.java
+            )
+        )
+    }
+
 
     private fun registroU(correo: String, contrasena: String, userA: String) {
         mAuth!!.createUserWithEmailAndPassword(correo, contrasena)
